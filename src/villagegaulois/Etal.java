@@ -33,7 +33,7 @@ public class Etal <T extends lProduit> implements lEtal{
 	@Override
 	public double acheterProduit(int quantiteSouhaitee) {
 		double prixPaye = 0;
-		for (int i = nbProduit -1; i > nbProduit - quantiteSouhaitee -1 || i > 1;i--) {
+		for (int i = nbProduit -1; i > nbProduit - quantiteSouhaitee -1 || i > 1;i--) { 
 			prixPaye += produits[i].calculerPrix(prix);
 		}
 		if (nbProduit >= quantiteSouhaitee) {
@@ -48,7 +48,7 @@ public class Etal <T extends lProduit> implements lEtal{
 	public String etalEtal() {
 		StringBuilder chaine = new StringBuilder(vendeur.getNom());
 		if (nbProduit > 0) {
-			chaine.append("vend");
+			chaine.append(" vend ");
 			chaine.append(nbProduit + " produits :");
 			for (int i = 0; i < nbProduit; i++) {
 				chaine.append("\n- " + produits[i].description());
@@ -58,6 +58,16 @@ public class Etal <T extends lProduit> implements lEtal{
 		}
 		chaine.append("\n");
 		return chaine.toString();
+	}
+
+	@Override
+	public Gaulois getVendeur() {
+		return vendeur;
+	}
+
+	@Override
+	public double donnerPrix() {
+		return prix;
 	}
 
 }

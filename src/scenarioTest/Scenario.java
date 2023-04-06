@@ -1,13 +1,58 @@
 package scenarioTest;
 
 import personnages.Gaulois;
-import vilagegauloisold.Etal;
+import produit.*;
+import village.*;
+import villagegaulois.*;
+import vilagegauloisold.DepenseMarchand;
 
 public class Scenario {
 
 	public static void main(String[] args) {
 
-		// TODO Partie 4 : creer de la classe anonyme Village
+		IVillage village = new IVillage() {
+			
+			lEtal[] marche = new lEtal[100];
+			int nombreEtal = 0;
+			DepenseMarchand[] depenseMarchand = new DepenseMarchand[100];
+			int nombreDepense = 0;
+			
+			@Override
+			public <P extends Produit> boolean installerVendeur(Etal<P> etal, Gaulois vendeur, P[] produit, int prix) {
+				if (nombreEtal == 100) return false;
+				else {
+					etal.installerVendeur(vendeur, produit, prix);
+					marche[nombreEtal] = etal;
+					nombreEtal ++;
+					return true;
+				}
+			}
+			
+			@Override
+			public DepenseMarchand[] acheterProduit(String produit, int quantiteSouhaitee) {
+				int nombreProduit = 0;
+				int i = 0;
+				int produitEtal;	
+				double prix;
+				while (nombreProduit < 3 && i < nombreEtal) {
+					produitEtal = marche[i].contientProduit(produit, quantiteSouhaitee - nombreProduit);
+					prix = marche[i].acheterProduit(produitEtal);
+					nombreProduit += produitEtal;
+					depenseMarchand[nombreDepense] = new DepenseMarchand(marche[i].getVendeur(), produitEtal, produit, prix);
+					nombreDepense ++;
+					i++;
+				}
+				return depenseMarchand;
+			}
+			
+			@Override
+			public String toString() {
+				for (int i = 0; i < nombreEtal; i++) {
+					System.out.println(marche[i].etalEtal());
+				}
+				return super.toString();
+			} 
+		};
 
 		// fin
 

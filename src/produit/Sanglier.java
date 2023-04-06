@@ -18,5 +18,10 @@ public class Sanglier extends Produit{
 		chaine.append(super.getNom() + " de " + poids + " " + super.getUnite() + " chassé par " + chasseur + ".");
 		return chaine.toString();
 	}
+	
+	@Override
+	public int calculerPrix(int prix) {
+		return (prix * poids) / 1000;
+	}
 
 }

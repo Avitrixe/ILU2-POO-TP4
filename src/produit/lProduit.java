@@ -7,5 +7,7 @@ public interface lProduit {
 	String getUnite();
 
 	String description();
+	
+	int calculerPrix(int prix);
 
 }

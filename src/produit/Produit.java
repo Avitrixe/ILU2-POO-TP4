@@ -23,5 +23,8 @@ public abstract class Produit implements lProduit {
 	@Override
 	public abstract String description() ;
 	
-	
+	@Override
+	public int calculerPrix(int prix) {
+		return prix;
+	}
 }

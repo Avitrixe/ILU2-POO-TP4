@@ -33,6 +33,26 @@ public class ScenarioTest {
 		etalSanglier2.installerVendeur(asterix, sangliersAsterix, 10);
 		etalPoisson.installerVendeur(ordralfabetix, poissons, 7);
 		
+		System.out.println(etalSanglier2.etalEtal());
+		System.out.println(etalSanglier1.etalEtal());
+		System.out.println(etalPoisson.etalEtal());
+		
+		int nombreSanglierVoulu = 3;
+		int nombreSanglier = 0;
+		int i = 0;
+		int sanglierEtal;	
+		while (nombreSanglier < 3 && i < marche.length) {
+			sanglierEtal = marche[i].contientProduit("sanglier", nombreSanglierVoulu - nombreSanglier);
+			System.out.println("A l'etal " + i + " je paye " + marche[i].acheterProduit(sanglierEtal) + " sous.");
+			nombreSanglier += sanglierEtal;
+			i ++;
+		}
+		
+		System.out.println("Je voulais " + nombreSanglierVoulu + " sangliers, j'en ai acheté " + nombreSanglier + "\n");
+		
+		System.out.println(etalSanglier2.etalEtal());
+		System.out.println(etalSanglier1.etalEtal());
+		System.out.println(etalPoisson.etalEtal());
 		
 	}
 	
